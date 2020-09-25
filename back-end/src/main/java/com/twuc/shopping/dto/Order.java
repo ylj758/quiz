@@ -20,8 +20,4 @@ public class Order {
     private Integer count;
     @NotEmpty
     private String unit;
-
-    private Integer productId;
-
-
 }

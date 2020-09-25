@@ -17,10 +17,6 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-//    public OrderController(OrderService orderService) {
-//        this.orderService = orderService;
-//    }
-
     @GetMapping("/orders")
     public ResponseEntity<String> getOrders() throws JsonProcessingException {
         List<OrderEntity> productEntityList = orderService.findAll();
@@ -35,8 +31,8 @@ public class OrderController {
     }
 
     @PostMapping("/order/add")
-    public ResponseEntity<Object> deleteOrder(@RequestBody Order order ){
+    public ResponseEntity<Object> addOrder(@RequestBody Order order ){
         orderService.save(order);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.created(null).build();
     }
 }

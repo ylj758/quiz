@@ -29,7 +29,7 @@ public class ProductController {
     }
 
     @PostMapping("/product/add")
-    public ResponseEntity<Object> deleteOrder(@RequestBody Product product ){
+    public ResponseEntity<Object> addProduct(@RequestBody Product product ){
         productService.save(product);
         return ResponseEntity.created(null).build();
     }

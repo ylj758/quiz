@@ -1,0 +1,21 @@
+.home {
+    display: flex;
+    width: 80%;
+    flex-flow: row wrap;
+    margin-left: 15%;
+    padding-top: 100px;
+}
+
+.pro-div {
+    flex: 0 0 20%;
+    height: 200px;
+    border: 1px black solid;
+    margin: 10px;
+}
+
+.pro-name {
+    margin-top: 100px;
+}
+.link-order{
+    text-decoration:none;
+}

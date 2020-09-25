@@ -52,7 +52,6 @@ class ProductControllerTest {
                 .unit("元")
                 .img("1.png")
                 .build();
-        List<ProductEntity> productEntityList = setData();
         mockMvc.perform(post("/product/add")
                 .content(new ObjectMapper().writeValueAsString(product))
                 .contentType(MediaType.APPLICATION_JSON))
