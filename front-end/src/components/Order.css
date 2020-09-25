@@ -5,11 +5,10 @@ table, td, th {
 th {
     background-color: cornflowerblue;
     color: white;
-    width:100px;
+    width:80px;
 }
 
 .order{
     width:80%;
-    margin-left:20%;
     margin-top:50px;
 }
