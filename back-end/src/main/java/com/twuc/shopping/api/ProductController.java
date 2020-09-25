@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.twuc.shopping.dto.Product;
 import com.twuc.shopping.entity.ProductEntity;
 import com.twuc.shopping.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,11 +14,12 @@ import java.util.List;
 
 @RestController
 public class ProductController {
+    @Autowired
     ProductService productService;
 
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
+//    public ProductController(ProductService productService) {
+//        this.productService = productService;
+//    }
 
     @GetMapping("/products")
     public ResponseEntity<String> getProducts() throws JsonProcessingException {
@@ -26,5 +28,10 @@ public class ProductController {
         return ResponseEntity.ok(json);
     }
 
+    @PostMapping("/product/add")
+    public ResponseEntity<Object> deleteOrder(@RequestBody Product product ){
+        productService.save(product);
+        return ResponseEntity.created(null).build();
+    }
 
 }
