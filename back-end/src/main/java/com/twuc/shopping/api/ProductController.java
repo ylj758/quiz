@@ -17,10 +17,6 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-//    public ProductController(ProductService productService) {
-//        this.productService = productService;
-//    }
-
     @GetMapping("/products")
     public ResponseEntity<String> getProducts() throws JsonProcessingException {
         List<ProductEntity> productEntityList = productService.findAll();
@@ -29,7 +25,7 @@ public class ProductController {
     }
 
     @PostMapping("/product/add")
-    public ResponseEntity<Object> addProduct(@RequestBody Product product ){
+    public ResponseEntity<Object> addProduct(@Valid @RequestBody Product product ){
         productService.save(product);
         return ResponseEntity.created(null).build();
     }

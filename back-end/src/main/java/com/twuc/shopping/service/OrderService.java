@@ -13,11 +13,6 @@ public class OrderService {
     @Autowired
     OrderRepository orderRepository;
 
-//    @Autowired
-//    public OrderService(OrderRepository orderRepository) {
-//        this.orderRepository = orderRepository;
-//    }
-
     public List<OrderEntity> findAll() {
         return orderRepository.findAll();
     }
@@ -38,5 +33,9 @@ public class OrderService {
                 .unit(order.getUnit())
                 .build();
         orderRepository.save(orderEntity);
+    }
+
+    public void deleteAll() {
+       orderRepository.deleteAll();
     }
 }

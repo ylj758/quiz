@@ -21,7 +21,4 @@ public class OrderEntity {
     private Integer price;
     private Integer count;
     private String unit;
-//    @ManyToOne
-//    @JoinColumn(name = "product_id")
-//    private ProductEntity productEntity;
 }

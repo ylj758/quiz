@@ -36,12 +36,7 @@ class ProductControllerTest {
 
     @BeforeEach
     void setUp() {
-//        productService.deleteAll();
-    }
-
-    @AfterEach
-    void tearDown() {
-//        productService.deleteAll();
+        productService.deleteAll();
     }
 
     @Test
@@ -60,15 +55,70 @@ class ProductControllerTest {
     }
 
     @Test
+    void should_add_product_unsuccess_when_name_is_null() throws Exception {
+        Product product = Product.builder()
+                .name("")
+                .price(3)
+                .unit("元")
+                .img("1.png")
+                .build();
+        mockMvc.perform(post("/product/add")
+                .content(new ObjectMapper().writeValueAsString(product))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void should_add_product_unsuccess_when_price_is_null() throws Exception {
+        Product product = Product.builder()
+                .name("雪碧")
+                .price(null)
+                .unit("元")
+                .img("1.png")
+                .build();
+        mockMvc.perform(post("/product/add")
+                .content(new ObjectMapper().writeValueAsString(product))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void should_add_product_unsuccess_when_unit_is_null() throws Exception {
+        Product product = Product.builder()
+                .name("雪碧")
+                .price(1)
+                .unit("")
+                .img("1.png")
+                .build();
+        mockMvc.perform(post("/product/add")
+                .content(new ObjectMapper().writeValueAsString(product))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void should_add_product_unsuccess_when_img_is_null() throws Exception {
+        Product product = Product.builder()
+                .name("雪碧")
+                .price(1)
+                .unit("元/瓶")
+                .img("")
+                .build();
+        mockMvc.perform(post("/product/add")
+                .content(new ObjectMapper().writeValueAsString(product))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void should_find_all_products_success() throws Exception {
-        List<ProductEntity> productEntityList = setData();
+        setData();
         mockMvc.perform(get("/products"))
                 .andExpect(status().isOk());
-//                .andExpect(jsonPath("$", is(new ObjectMapper().writeValueAsString(productEntityList))));
 
     }
 
-    private List<ProductEntity> setData() {
+    private void setData() {
         ProductEntity productEntity1 = ProductEntity.builder()
                 .name("可乐")
                 .price(3)
@@ -111,14 +161,5 @@ class ProductControllerTest {
                 .img("1.png")
                 .build();
         productService.save(productEntity6);
-
-        List<ProductEntity> productEntityList = new ArrayList<>();
-        productEntityList.add(productEntity1);
-        productEntityList.add(productEntity2);
-        productEntityList.add(productEntity3);
-        productEntityList.add(productEntity4);
-        productEntityList.add(productEntity5);
-        productEntityList.add(productEntity6);
-        return productEntityList;
     }
 }
