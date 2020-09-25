@@ -1,10 +1,18 @@
 package com.twuc.shopping.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "order")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderEntity {
     @Id
     @GeneratedValue
@@ -13,7 +21,7 @@ public class OrderEntity {
     private Integer price;
     private Integer count;
     private String unit;
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private ProductEntity productEntity;
+//    @ManyToOne
+//    @JoinColumn(name = "product_id")
+//    private ProductEntity productEntity;
 }
