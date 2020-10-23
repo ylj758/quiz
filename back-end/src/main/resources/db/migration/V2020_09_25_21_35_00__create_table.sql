@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS orders;
 CREATE TABLE orders (
-  id int(11) NOT NULL,
+  id int(11) NOT NULL AUTO_INCREMENT,
   count int(11) DEFAULT NULL,
   name varchar(255) DEFAULT NULL,
   price int(11) DEFAULT NULL,
@@ -14,7 +14,7 @@ INSERT INTO orders VALUES ('2', '4', '雪碧', '3', '元');
 
 DROP TABLE IF EXISTS product;
 CREATE TABLE product (
-  id int(11) NOT NULL,
+  id int(11) NOT NULL  AUTO_INCREMENT,
   img varchar(255) DEFAULT NULL,
   name varchar(255) DEFAULT NULL,
   price int(11) DEFAULT NULL,

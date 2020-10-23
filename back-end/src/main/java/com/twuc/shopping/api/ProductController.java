@@ -6,6 +6,7 @@ import com.twuc.shopping.dto.Product;
 import com.twuc.shopping.entity.ProductEntity;
 import com.twuc.shopping.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +26,11 @@ public class ProductController {
     }
 
     @PostMapping("/product/add")
-    public ResponseEntity<Object> addProduct(@Valid @RequestBody Product product ){
-        productService.save(product);
-        return ResponseEntity.created(null).build();
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addProduct(@Valid @RequestBody Product product ) throws Exception {
+         productService.save(product);
     }
+
+
 
 }
