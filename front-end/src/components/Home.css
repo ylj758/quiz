@@ -19,3 +19,42 @@
 .link-order{
     text-decoration:none;
 }
+
+.cart{
+    margin-left: 93%;
+    margin-bottom: 30px;
+}
+
+.cartImg{
+    height:30px;
+    margin-right:5px;
+}
+
+.cartNum{
+    font-size:26px;
+    color: black;
+}
+
+.modal-body {
+    color: black;
+    text-align: center;
+}
+
+.btn-group {
+    margin: 48px 0;
+}
+
+.btn-group button {
+    font-size: 18px;
+    width: 106px;
+    height: 40px;
+    border-radius: 4px;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.12);
+    margin: 0 8px;
+}
+
+.btn-group button:first-child {
+    color: #FFFFFF;
+    background-color: #4f4fdf;
+}
+
