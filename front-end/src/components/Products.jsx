@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import "bootstrap/dist/css/bootstrap.css";
 
-
 class About extends Component {
   state = {
     name: "",
@@ -14,9 +13,22 @@ class About extends Component {
       [field]: event.target.value,
     })
   };
-  handleFormSubmit = (e) => {
-    e.preventDefault();
-    alert(JSON.stringify(this.state));
+
+
+
+  handleFormSubmit = async (e) => {
+    const response = await fetch("http://localhost:8080/product/add",{
+      method:"POST",
+      headers: {
+      'Content-Type': 'application/json'
+    },
+    body:JSON.stringify(this.state)
+  })
+   if(await response.status === 500){
+      alert("商品名称已存在，请输入新的商品名称")
+    }else{
+      alert("商品添加成功")
+    }
   }
 
 
@@ -46,6 +58,7 @@ class About extends Component {
               className="form-control input-name"
               id="price"
               placeholder={"价格"}
+
             >
             </input>
           </div>
@@ -78,9 +91,11 @@ class About extends Component {
         <input type="submit"
                value="submit"
                className="btn btn-primary input-btn"
-               disabled={!this.state.name || !this.state.img || !this.state.price|| !this.state.unit}
+               disabled={!this.state.name || !this.state.img || !this.state.price || !this.state.unit}
                onClick={this.handleFormSubmit}
         />
+
+
       </div>
     );
   }
