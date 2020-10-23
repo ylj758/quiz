@@ -1,6 +1,5 @@
 package com.twuc.shopping.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,17 +8,15 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "product_order_contact")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderEntity {
+public class ProductOrderContactEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
-    private Integer price;
-    private Integer count;
-    private String unit;
+    private String productId;
+    private String OrderId;
 }

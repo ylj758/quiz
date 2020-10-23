@@ -10,4 +10,7 @@ public interface ProductRepository extends CrudRepository<ProductEntity, Integer
     List<ProductEntity> findAll();
     @Query(nativeQuery = true, value = "select count(1) from product where name =?1")
     int findByName(String name);
+
+    @Query(nativeQuery = true, value = "select id from product where name =?1")
+    List<String> getProductId(String name);
 }
