@@ -31,12 +31,6 @@ public class OrderController {
         return ResponseEntity.noContent().build();
     }
 
-//    @PostMapping("/order/add")
-//    public ResponseEntity<Object> addOrder(@Valid @RequestBody Order order ){
-//        orderService.save(order);
-//        return ResponseEntity.created(null).build();
-//    }
-
     @PostMapping("/order/add")
     public ResponseEntity<Object> addOrder(@Valid @RequestBody List<Product> products ){
         orderService.save(products);

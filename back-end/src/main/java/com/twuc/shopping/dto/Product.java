@@ -16,7 +16,7 @@ public class Product {
     @NotEmpty
     private String name;
     @NotNull
-    private Integer price;
+    private Double price;
     @NotEmpty
     private String unit;
     @NotEmpty

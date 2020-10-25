@@ -12,12 +12,6 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {
-    @NotEmpty
-    private String name;
     @NotNull
     private Integer price;
-    @NotNull
-    private Integer count;
-    @NotEmpty
-    private String unit;
 }

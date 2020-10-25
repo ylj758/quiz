@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -34,40 +35,26 @@ public class OrderService {
         orderRepository.save(orderEntity);
     }
 
-    public void save(Order order) {
-        OrderEntity orderEntity = OrderEntity.builder()
-                .name(order.getName())
-                .count(order.getCount())
-                .price(order.getPrice())
-                .unit(order.getUnit())
-                .build();
-        orderRepository.save(orderEntity);
-    }
-
     public void deleteAll() {
-       orderRepository.deleteAll();
+        orderRepository.deleteAll();
     }
 
     @Transactional
     public void save(List<Product> products) {
+        double price = products.stream().collect(Collectors.summingDouble(Product::getPrice));
+        OrderEntity orderEntity = OrderEntity.builder()
+                .price(price)
+                .build();
+        save(orderEntity);
 
-        for(Product product: products){
-            List<String> ids = productRepository.getProductId(product.getName());
-            String productId = ids.get(0);
-            OrderEntity orderEntity = OrderEntity.builder()
-                    .name(product.getName())
-                    .count(1)
-                    .price(product.getPrice())
-                    .unit(product.getUnit())
+        for (Product product : products) {
+            List<Integer> ids = productRepository.getProductId(product.getName());
+            Integer productId = ids.get(0);
+            ProductOrderContactEntity productOrderContactEntity = ProductOrderContactEntity.builder()
+                    .productId(productId)
+                    .orderId(orderEntity.getId())
                     .build();
-            save(orderEntity);
-//            ProductOrderContactEntity productOrderContactEntity = ProductOrderContactEntity.builder()
-//                    .productId(String.valueOf(productId))
-//                    .OrderId(orderEntity.getId())
-//
-//            .build();
-
-//            productOrderContactRepository.save();
+            productOrderContactRepository.save(productOrderContactEntity);
         }
 
 

@@ -17,6 +17,6 @@ public class ProductOrderContactEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String productId;
-    private String OrderId;
+    private Integer productId;
+    private Integer orderId;
 }
